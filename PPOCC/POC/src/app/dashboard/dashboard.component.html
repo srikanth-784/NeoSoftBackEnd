@@ -1,0 +1,118 @@
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <!-- <th scope="col"></th> -->
+    <th scope="col">UserName</th>
+    <th scope="col">Address</th>
+    <th scope="col">Email</th>
+    <th scope="col">mobile number</th>
+    <th scope="col">Edit</th>
+    <th scope="col">Delete</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of userList; index as i">
+    <td scope="row">{{ i + 1 }}</td>
+    <td>{{user.userLogin.userName}}</td>
+    <td>
+      <div *ngFor="let ad of user.address">
+        <p>{{ad.city}}</p>
+        <p>{{ad.pincode}}</p>
+      </div>
+    </td>
+    <td>{{ user.emailId }}</td>
+    <td>{{ user.mobileNo }}</td>
+    <!-- [routerLink]="['/registration', user.id]"     [routerLink]="['/registration', user.id]"-->
+    <td>  <button type="button" class="btn btn-primary" (click) = "editUser(user)"    data-toggle="modal" data-target="#myModal">
+      Edit
+    </button></td>
+    <td><button (click) = "deleteUser(user.id)">Delete</button></td>
+    <!-- <td>{{ country.population | number }}</td> -->
+  </tr>
+  </tbody>
+</table>
+
+
+
+
+
+<div class="container">
+ 
+  <!-- Button to Open the Modal -->
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">User Update</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form [formGroup]="registerForm" >
+
+            <div class="form-group">
+              <label for="userName">Username</label>
+              <input type="text" formControlName="userName" [(ngModel)] = "username"  class="form-control" />
+        
+              
+            </div>
+            <div class="form-group">
+              <label for="Password">Password</label>
+              <input type="password" formControlName="Password" [(ngModel)] = "password" class="form-control"  />
+ 
+              </div>
+              
+          
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" formControlName="city" [(ngModel)] = "City" class="form-control"  />
+
+              </div>
+              
+          
+            <div class="form-group">
+              <label for="pinCode">Pincode</label>
+              <input type="text" formControlName="pinCode" [(ngModel)] = "Pincode" class="form-control"  />
+ 
+              </div>
+          
+            <div class="form-group">
+              <label for="EmailId">Email Id</label>
+              <input type="text" formControlName="EmailId" [(ngModel)] = "Email" class="form-control"  />
+
+            </div>
+          
+              <div class="form-group">
+              <label for="mobileNumber">Phone Number</label>
+              <input type="text" formControlName="mobileNumber" [(ngModel)] = "phoneNumber" class="form-control"  />
+    
+            </div>
+          
+          
+            <div class="form-group">
+              <button  (click) = "updateUser(registerForm.value)" class="btn btn-primary" data-dismiss="modal">Update</button>
+          
+              <!-- <a [routerLink]="['']" class="btn btn-link">Cancel</a> -->
+            </div>
+          </form>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+

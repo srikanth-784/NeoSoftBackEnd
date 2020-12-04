@@ -1,0 +1,47 @@
+<div class=" container jumbotron">
+<h2>Register</h2>
+<form [formGroup]="registerForm" >
+
+	<div class="form-group">
+		<label for="username">Username</label>
+		<input type="text" formControlName="username" class="form-control" required/>
+		<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+			<div *ngIf="f.username.errors.required">Username is required</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="password">Password</label>
+		<input type="password" formControlName="password" class="form-control"  required/>
+	
+    </div>
+    
+
+	<div class="form-group">
+		<label for="City">City</label>
+		<input type="text" formControlName="City" class="form-control"  required/>
+    </div>
+    
+
+	<div class="form-group">
+		<label for="Pincode">Pincode</label>
+		<input type="text" formControlName="Pincode" class="form-control"  required/>
+    </div>
+
+	<div class="form-group">
+		<label for="Email">Email Id</label>
+		<input type="text" formControlName="Email" class="form-control"  required/>
+	</div>
+
+    <div class="form-group">
+		<label for="phoneNumber">Phone Number</label>
+		<input type="text" formControlName="phoneNumber" class="form-control"  required/>
+	</div>
+
+
+	<div class="form-group">
+		<button [disabled]="registerForm.invalid" (click) = "createUser(registerForm.value)" class="btn btn-primary">Register</button>
+
+		<a [routerLink]="['']" class="btn btn-link">Cancel</a>
+	</div>
+</form>
+</div>
